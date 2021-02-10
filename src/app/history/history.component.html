@@ -1,0 +1,23 @@
+<div>
+  <table
+    class="table"
+    *ngIf="transfers"
+    >
+    <thead>
+      <tr>
+        <th scope="col">Time</th>
+        <th scope="col">From</th>
+        <th scope="col">To</th>
+        <th scope="col">Sum</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let transfer of transfers">
+        <th>{{ transfer.time| date: 'medium' }}</th>
+        <td>{{ transfer.firstName }} {{ transfer.lastName }}<br> {{ transfer.cardNumberFrom }}</td>
+        <td>{{ transfer.cardNumberTo }}</td>
+        <td>{{ transfer.value }} руб.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
