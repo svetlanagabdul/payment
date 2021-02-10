@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HistoryService } from '../history.service';
+import { HistoryService } from '../history/history.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { luhnValidator } from './validation/luhnValidator';
 import { getValidationConfigFromCardNo } from './validation/card.helper';
@@ -16,19 +16,18 @@ export class TransferComponent implements OnInit {
   
   ngOnInit(): void {
     this.cardNumberGroup = new FormGroup({
-      'cardNumberFrom': new FormControl('', [
-          Validators.required,
-          Validators.minLength(12),
-          luhnValidator()
-        ]),
-        'firstname': new FormControl('', [
+        'firstName': new FormControl('', [
           Validators.required,
           Validators.pattern(/^[a-zA-Z ]+$/)
         ]),
         'lastName': new FormControl('', [
           Validators.required,
-          
           Validators.pattern(/^[a-zA-Z ]+$/)
+        ]),
+        'cardNumberFrom': new FormControl('', [
+          Validators.required,
+          Validators.minLength(12),
+          luhnValidator()
         ]),
         'value': new FormControl('', [
           Validators.required,

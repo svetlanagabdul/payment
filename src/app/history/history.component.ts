@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HistoryService } from '../history.service';
+import { HistoryService } from './history.service';
 import { TransferInterface } from './model';
 
 @Component({

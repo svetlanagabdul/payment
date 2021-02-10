@@ -6,7 +6,7 @@ import { TransferComponent } from './transfer/transfer.component';
 const routes: Routes = [
   {path: 'transfer', component: TransferComponent},
   {path: 'history', component: HistoryComponent},
-  {path: '', redirectTo: '/transfer', pathMatch: 'full',},
+  {path: '', redirectTo: '/transfer', pathMatch: 'full'},
 ];
 
 @NgModule({

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { TransferInterface } from './history/model';
+import { TransferInterface } from './model';
 
 const KEY_NAME = 'HISTORY_DATA';
 

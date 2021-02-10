@@ -5,28 +5,29 @@
   <div class="d-flex flex-column align-items-center">
     <h3>Данные отправителя</h3>
     <div class="card">
-      <div class="mb-4">
+      <div class="card-input">
         <input
-        type="text"
-        name="firstName"
-        class="form-control form-control-sm"
-        placeholder="Имя"
-        formControlName="firstname"
+          type="text"
+          class="form-control form-control-sm"
+          placeholder="Имя"
+          formControlName="firstName"
         >
-        <div
-        *ngIf="true"
-        class="form-text">Поле должно содержать латинские буквы.</div>
+        <ng-container
+          *ngTemplateOutlet="errorMessage; context: { message: 'Поле должно содержать латинские буквы.', control: cardNumberGroup.controls.firstName }"
+        ></ng-container>
       </div>
-      <div class="mb-4">
+      <div class="card-input">
         <input
-        type="text"
-        class="form-control form-control-sm"
-        placeholder="Фамилия"
-        formControlName="lastName"
+          type="text"
+          class="form-control form-control-sm"
+          placeholder="Фамилия"
+          formControlName="lastName"
         >
-        <div class="form-text">Поле должно содержать латинские буквы</div>
+        <ng-container
+          *ngTemplateOutlet="errorMessage; context: { message: 'Поле должно содержать латинские буквы.', control: cardNumberGroup.controls.lastName }"
+        ></ng-container>
       </div>
-      <div class="mb-4">
+      <div class="card-input">
         <input
           type="text"
           class="form-control form-control-sm"
@@ -34,21 +35,27 @@
           formControlName="cardNumberFrom"
           [textMask]="{mask: cardMaskFunction, guide: false, showMask: true}"
         >
-        <div class="form-text">Введите валидный номер карты.</div>
+        <ng-container
+          *ngTemplateOutlet="errorMessage; context: { message: 'Введите валидный номер карты.', control: cardNumberGroup.controls.cardNumberFrom }"
+        ></ng-container>
       </div>
     </div>
-    <div class="mb-4 d-flex">
-      <input
-      type="text"
-      class="form-control form-control-sm"
-      placeholder="Сумма"
-      formControlName="value"
-      ><span class="ml-2">руб.</span>
-      <div class="form-text">Поле должно содержать только цифры.</div>
+    <div class="card-input">
+      <div class=" d-flex">
+        <input
+        type="text"
+        class="form-control form-control-sm"
+        placeholder="Сумма"
+        formControlName="value"
+        ><span class="ml-2">руб.</span>
+      </div>
+      <ng-container
+        *ngTemplateOutlet="errorMessage; context: { message: 'Поле должно содержать только цифры.', control: cardNumberGroup.controls.value }"
+      ></ng-container>
     </div>
     <h3>Данные получателя</h3>
     <div class="card">
-      <div class="mb-4">
+      <div class="card-input">
         <input
         type="text"
         class="form-control form-control-sm"
@@ -56,7 +63,9 @@
         formControlName="cardNumberTo"
         [textMask]="{mask: cardMaskFunction, guide: false, showMask: true}"
         >
-        <div class="form-text">Введите валидный номер карты.</div>
+        <ng-container
+          *ngTemplateOutlet="errorMessage; context: { message: 'Введите валидный номер карты.', control: cardNumberGroup.controls.cardNumberTo }"
+        ></ng-container>
       </div>
     </div>
     <button
@@ -64,5 +73,11 @@
     class="btn btn-primary"
     [disabled]="cardNumberGroup.invalid"
     >Сделать перевод</button>
+    <ng-template #errorMessage let-msg='message' let-control = 'control'>
+      <span
+        *ngIf="control.touched && control.dirty && control.invalid"
+        class="invalid-feedback"
+      >{{ msg }}</span>
+    </ng-template>
   </div>
 </form>
